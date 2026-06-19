@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ahmad Ali – AI/ML Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Georgia&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy:    #0a3d6b;
+    --blue:    #1565a8;
+    --sky:     #7ec8f5;
+    --light:   #e6f1fb;
+    --pale:    #f0f5fb;
+    --white:   #ffffff;
+    --text:    #2c3e50;
+    --muted:   #5a7fa8;
+    --border:  #c8dff5;
+  }
+
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: var(--pale);
+    color: var(--text);
+  }
+
+  /* ── NAV ── */
+  .nav {
+    background: var(--navy);
+    padding: 14px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+  }
+  .nav-logo {
+    color: var(--white);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-style: italic;
+  }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a {
+    color: #a8c8f0;
+    font-size: 13px;
+    text-decoration: none;
+    transition: color .2s;
+    font-family: Georgia, serif;
+  }
+  .nav-links a:hover { color: var(--white); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 360px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    padding: 48px 48px 48px 56px;
+    gap: 48px;
+  }
+
+  /* Background: Unsplash tech/circuit image with overlay */
+  .hero-bg-img {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1400&q=80');
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+  }
+
+  /* Dark blue gradient overlay so text stays readable */
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      120deg,
+      rgba(8, 40, 80, 0.93) 0%,
+      rgba(15, 70, 130, 0.88) 50%,
+      rgba(20, 100, 180, 0.65) 100%
+    );
+    z-index: 1;
+  }
+
+  .hero-content { position: relative; z-index: 2; flex: 1; }
+  .hero-photo-wrap { position: relative; z-index: 2; flex-shrink: 0; }
+
+  .hero-photo {
+    width: 165px;
+    height: 195px;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 14px;
+    border: 3px solid rgba(126, 200, 245, 0.45);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    display: block;
+  }
+
+  /* Placeholder shown when no photo */
+  .hero-photo-placeholder {
+    width: 165px;
+    height: 195px;
+    border-radius: 14px;
+    border: 2px dashed rgba(126,200,245,0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: rgba(126,200,245,0.75);
+    font-size: 12px;
+    font-family: Georgia, serif;
+    text-align: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.05);
+    cursor: pointer;
+  }
+  .hero-photo-placeholder i { font-size: 36px; }
+
+  .hero-tag {
+    display: inline-block;
+    background: rgba(126, 200, 245, 0.18);
+    border: 1px solid rgba(126, 200, 245, 0.4);
+    color: var(--sky);
+    font-size: 11px;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+    letter-spacing: .6px;
+    font-style: italic;
+  }
+  .hero-name {
+    color: var(--white);
+    font-size: 42px;
+    font-weight: 700;
+    font-style: italic;
+    letter-spacing: 1.5px;
+    line-height: 1.1;
+    margin-bottom: 10px;
+  }
+  .hero-title {
+    color: var(--sky);
+    font-size: 15px;
+    margin: 0 0 6px;
+    font-weight: normal;
+    font-style: italic;
+  }
+  .hero-uni {
+    color: rgba(255,255,255,0.55);
+    font-size: 12.5px;
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+  .hero-contact {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 22px;
+    color: rgba(255,255,255,0.65);
+    font-size: 12px;
+    font-style: italic;
+  }
+  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-white {
+    background: var(--white);
+    color: var(--navy);
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    font-family: Georgia, serif;
+    font-style: italic;
+    transition: background .2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-white:hover { background: #ddeffc; }
+  .btn-ghost {
+    background: transparent;
+    color: var(--white);
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-size: 13px;
+    border: 1.5px solid rgba(255,255,255,0.4);
+    cursor: pointer;
+    font-family: Georgia, serif;
+    font-style: italic;
+    transition: border-color .2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.75); }
+
+  /* Photo upload input (hidden) */
+  #photo-input { display: none; }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: var(--blue);
+    padding: 18px 48px;
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    color: var(--white);
+    font-size: 22px;
+    font-weight: 700;
+    font-style: italic;
+  }
+  .stat-label {
+    color: #a8c8f0;
+    font-size: 11px;
+    margin-top: 3px;
+    letter-spacing: .4px;
+  }
+
+  /* ── SECTIONS ── */
+  .section { padding: 40px 48px; background: var(--pale); }
+  .section-alt { padding: 40px 48px; background: var(--white); }
+
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--navy);
+    margin-bottom: 22px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1.5px;
+    background: linear-gradient(90deg, var(--blue), transparent);
+  }
+
+  /* ── EXPERIENCE CARDS ── */
+  .exp-card {
+    background: var(--white);
+    border: 0.5px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-bottom: 14px;
+    border-left: 4px solid var(--blue);
+    transition: box-shadow .2s;
+  }
+  .exp-card:hover { box-shadow: 0 4px 18px rgba(21,101,168,0.1); }
+  .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
+  .exp-role { font-size: 14px; font-weight: 700; color: var(--navy); font-style: italic; }
+  .exp-date {
+    font-size: 11px; color: var(--blue);
+    background: var(--light); padding: 3px 12px;
+    border-radius: 20px; white-space: nowrap;
+  }
+  .exp-company { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+  .exp-bullets { font-size: 12.5px; color: #444; line-height: 1.9; padding-left: 18px; }
+  .exp-bullets li { margin-bottom: 3px; }
+
+  /* ── PROJECT CARDS ── */
+  .proj-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 18px;
+  }
+  .proj-card {
+    background: var(--white);
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: box-shadow .2s, transform .2s;
+  }
+  .proj-card:hover { box-shadow: 0 6px 20px rgba(21,101,168,0.14); transform: translateY(-3px); }
+  .proj-top {
+    background: linear-gradient(135deg, var(--navy), var(--blue));
+    padding: 16px 18px;
+  }
+  .proj-icon {
+    width: 34px; height: 34px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 10px;
+  }
+  .proj-name { color: var(--white); font-size: 14px; font-weight: 700; font-style: italic; }
+  .proj-body { padding: 16px 18px; }
+  .proj-tech { font-size: 11px; color: var(--blue); margin-bottom: 8px; font-style: italic; }
+  .proj-desc { font-size: 12.5px; color: #555; line-height: 1.65; margin-bottom: 12px; }
+  .proj-acc {
+    display: inline-block; background: var(--light);
+    color: var(--navy); font-size: 11px; font-weight: 700;
+    padding: 3px 12px; border-radius: 20px; margin-bottom: 12px;
+  }
+  .proj-link {
+    font-size: 12px; color: var(--blue); text-decoration: none;
+    border: 1px solid var(--border); padding: 5px 16px;
+    border-radius: 5px; display: inline-block;
+    transition: background .2s;
+    font-style: italic;
+  }
+  .proj-link:hover { background: var(--light); }
+
+  /* ── SKILLS ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 14px;
+  }
+  .skill-box {
+    background: var(--white); border: 0.5px solid var(--border);
+    border-radius: 10px; padding: 16px 18px;
+  }
+  .skill-label {
+    font-size: 11px; font-weight: 700; color: var(--blue);
+    margin-bottom: 10px; text-transform: uppercase; letter-spacing: .6px;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    background: var(--light); color: var(--navy);
+    font-size: 11px; padding: 4px 10px;
+    border-radius: 4px; font-style: italic;
+  }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    background: var(--navy);
+    padding: 40px 48px;
+    text-align: center;
+  }
+  .contact-title { color: var(--white); font-size: 20px; font-weight: 700; font-style: italic; margin-bottom: 8px; }
+  .contact-sub { color: #a8c8f0; font-size: 13px; margin-bottom: 24px; font-style: italic; }
+  .contact-links { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+  .contact-btn {
+    color: var(--sky); font-size: 13px; text-decoration: none;
+    border: 1.5px solid rgba(126,200,245,0.4); padding: 9px 22px;
+    border-radius: 6px; transition: background .2s;
+    font-family: Georgia, serif; font-style: italic;
+  }
+  .contact-btn:hover { background: rgba(126,200,245,0.1); }
+
+  /* ── CERTIFICATIONS ── */
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px;
+  }
+  .cert-card {
+    background: var(--pale);
+    border: 0.5px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    transition: box-shadow .2s;
+  }
+  .cert-card:hover { box-shadow: 0 3px 12px rgba(21,101,168,0.1); }
+  .cert-icon { flex-shrink: 0; margin-top: 2px; }
+  .cert-name { font-size: 13px; font-weight: 700; color: var(--navy); font-style: italic; margin-bottom: 3px; }
+  .cert-issuer { font-size: 11.5px; color: var(--muted); font-style: italic; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .hero { flex-direction: column-reverse; padding: 32px 24px; gap: 24px; }
+    .hero-name { font-size: 30px; }
+    .section, .section-alt { padding: 32px 24px; }
+    .stats-bar { gap: 20px; padding: 16px 24px; flex-wrap: wrap; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <span class="nav-logo">Ahmad Ali</span>
+  <div class="nav-links">
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO with background image + overlay -->
+<section class="hero">
+  <div class="hero-bg-img"></div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <div class="hero-tag">Open to AI/ML Roles · Lahore, Pakistan</div>
+    <div class="hero-name">AHMAD ALI</div>
+    <div class="hero-title">Aspiring AI/ML Engineer</div>
+    <div class="hero-uni">BS Computer Science · Lahore Leads University · CGPA 3.82 · Jan 2023 – Dec 2026</div>
+    <div class="hero-contact">
+      <span>📧 ahmad.ali.career@gmail.com</span>
+      <span>📞 +92 302 0436865</span>
+    </div>
+    <div class="hero-btns">
+      <a class="btn-white" href="CV_Ahmad_Ali.pdf" download>Download CV</a>
+      <a class="btn-ghost" href="https://github.com/ahmadali2622" target="_blank">View GitHub</a>
+      <a class="btn-ghost" href="https://www.linkedin.com/in/ahmad-ali-117a8a264" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+
+  <!-- Photo area — click to upload your picture -->
+  <div class="hero-photo-wrap">
+    <input type="file" id="photo-input" accept="image/*" onchange="loadPhoto(event)">
+    <div class="hero-photo-placeholder" id="photo-placeholder" onclick="document.getElementById('photo-input').click()">
+      <i class="ti ti-user-circle"></i>
+      <span>Click to add<br>your photo</span>
+    </div>
+    <img class="hero-photo" id="hero-photo-img" src="" alt="Ahmad Ali" style="display:none;">
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat"><div class="stat-num">3.82</div><div class="stat-label">CGPA</div></div>
+  <div class="stat"><div class="stat-num">3+</div><div class="stat-label">Internships</div></div>
+  <div class="stat"><div class="stat-num">3+</div><div class="stat-label">Projects</div></div>
+  <div class="stat"><div class="stat-num">85%+</div><div class="stat-label">Model Accuracy</div></div>
+</div>
+
+<!-- EXPERIENCE -->
+<div class="section" id="experience">
+  <div class="section-title">Experience</div>
+
+  <div class="exp-card">
+    <div class="exp-header">
+      <div>
+        <div class="exp-role">NetSol Technologies | AI/ML Intern</div>
+        <div class="exp-company">Onsite · Lahore</div>
+      </div>
+      <div class="exp-date">June 2026 (2 weeks)</div>
+    </div>
+    <ul class="exp-bullets">
+      <li>Developed an AI chatbot interface using React and FastAPI, integrated with Google Gemini 2.5 Flash-Lite.</li>
+      <li>Architected a LangGraph-based conversational flow for multi-step reasoning and state management.</li>
+      <li>Built a RAG pipeline — scraped source websites, chunked and embedded content, stored vectors in ChromaDB, and retrieved context for accurate, grounded LLM responses.</li>
+    </ul>
+  </div>
+
+  <div class="exp-card">
+    <div class="exp-header">
+      <div>
+        <div class="exp-role">NetSol Technologies | AI/ML Trainee</div>
+        <div class="exp-company">Onsite · Lahore</div>
+      </div>
+      <div class="exp-date">March – May 2026 (3 months)</div>
+    </div>
+    <ul class="exp-bullets">
+      <li>Completed an intensive AI/ML training program covering supervised learning, NLP, and RAG fundamentals.</li>
+      <li>Handled end-to-end projects during training, applying concepts in Python, Scikit-learn, and Pandas.</li>
+      <li>Built a foundational RAG system during training, later extended into a production chatbot during internship.</li>
+    </ul>
+  </div>
+
+  <div class="exp-card">
+    <div class="exp-header">
+      <div>
+        <div class="exp-role">Digicon Valley | Data Science Intern</div>
+        <div class="exp-company">Onsite · Lahore</div>
+      </div>
+      <div class="exp-date">May 2024 (1 week)</div>
+    </div>
+    <ul class="exp-bullets">
+      <li>Practiced Python scripting covering loops, conditionals, and core data structures.</li>
+      <li>Explored data visualization techniques and applied them through hands-on Python exercises.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<div class="section-alt" id="projects">
+  <div class="section-title">Projects</div>
+  <div class="proj-grid">
+
+    <div class="proj-card">
+      <div class="proj-top">
+        <div class="proj-icon"><i class="ti ti-heart-rate" style="color:#7ec8f5;font-size:18px"></i></div>
+        <div class="proj-name">AI Health Analyzer</div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-tech">Python · Streamlit · Scikit-learn · Pandas</div>
+        <div class="proj-acc">85%+ Accuracy</div>
+        <div class="proj-desc">Predicted disease risk (diabetes, heart, hypertension, liver, kidney) using 5 Random Forest classifiers. Fixed data leakage issues, added diet plan recommendations, and built PDF lab report upload with auto field extraction & form auto-fill.</div>
+        <a class="proj-link" href="https://github.com/ahmadali2622/AI-Health-Analyzer" target="_blank">GitHub ↗</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-top">
+        <div class="proj-icon"><i class="ti ti-message-chatbot" style="color:#7ec8f5;font-size:18px"></i></div>
+        <div class="proj-name">RAG-Based Chatbot</div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-tech">Python · FastAPI · HuggingFace · ChromaDB · LangGraph</div>
+        <div class="proj-desc">Built a RAG pipeline scraping NetSol's website — chunked content, HuggingFace embeddings, ChromaDB vector storage. Architected LangGraph conversational flow with Gemini 2.5 Flash-Lite. React frontend with FastAPI backend.</div>
+        <a class="proj-link" href="https://github.com/ahmadali2622" target="_blank">GitHub ↗</a>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-top">
+        <div class="proj-icon"><i class="ti ti-home" style="color:#7ec8f5;font-size:18px"></i></div>
+        <div class="proj-name">House Price Prediction</div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-tech">Python · Scikit-learn · Pandas · Matplotlib</div>
+        <div class="proj-acc">R² Score: 0.63</div>
+        <div class="proj-desc">Predicted house prices using Boston Housing Dataset with Linear Regression. Compared multiple models (Random Forest, Polynomial Regression) and identified better alternatives through evaluation metrics.</div>
+        <a class="proj-link" href="https://github.com/ahmadali2622/House-Price-Prediction-" target="_blank">GitHub ↗</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SKILLS -->
+<div class="section" id="skills">
+  <div class="section-title">Skills</div>
+  <div class="skills-grid">
+    <div class="skill-box">
+      <div class="skill-label">Programming</div>
+      <div class="skill-tags">
+        <span class="tag">Python</span>
+        <span class="tag">C</span>
+        <span class="tag">C++</span>
+      </div>
+    </div>
+    <div class="skill-box">
+      <div class="skill-label">AI / ML</div>
+      <div class="skill-tags">
+        <span class="tag">Supervised Learning</span>
+        <span class="tag">NLP</span>
+        <span class="tag">RAG Pipelines</span>
+        <span class="tag">Random Forest</span>
+        <span class="tag">Linear Regression</span>
+      </div>
+    </div>
+    <div class="skill-box">
+      <div class="skill-label">Libraries & Frameworks</div>
+      <div class="skill-tags">
+        <span class="tag">NumPy</span>
+        <span class="tag">Pandas</span>
+        <span class="tag">Matplotlib</span>
+        <span class="tag">Scikit-learn</span>
+        <span class="tag">Streamlit</span>
+        <span class="tag">FastAPI</span>
+        <span class="tag">LangGraph</span>
+      </div>
+    </div>
+    <div class="skill-box">
+      <div class="skill-label">Tools & Platforms</div>
+      <div class="skill-tags">
+        <span class="tag">Git</span>
+        <span class="tag">GitHub</span>
+        <span class="tag">VS Code</span>
+        <span class="tag">Google Colab</span>
+      </div>
+    </div>
+    <div class="skill-box">
+      <div class="skill-label">Databases</div>
+      <div class="skill-tags">
+        <span class="tag">ChromaDB</span>
+        <span class="tag">MySQL</span>
+      </div>
+    </div>
+    <div class="skill-box">
+      <div class="skill-label">APIs & Models</div>
+      <div class="skill-tags">
+        <span class="tag">Gemini 2.5 Flash-Lite</span>
+        <span class="tag">HuggingFace</span>
+        <span class="tag">Groq / LLaMA 3.1</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CERTIFICATIONS -->
+<div class="section-alt" id="certifications">
+  <div class="section-title">Certifications</div>
+  <div class="cert-grid">
+    <div class="cert-card">
+      <div class="cert-icon"><i class="ti ti-certificate" style="color:#1565a8;font-size:20px"></i></div>
+      <div>
+        <div class="cert-name">Python 3 – Basic to Advance</div>
+        <div class="cert-issuer">Programming Hub · 2023</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon"><i class="ti ti-certificate" style="color:#1565a8;font-size:20px"></i></div>
+      <div>
+        <div class="cert-name">Data Science Intern Certificate</div>
+        <div class="cert-issuer">Digicon Valley · 2024</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon"><i class="ti ti-certificate" style="color:#1565a8;font-size:20px"></i></div>
+      <div>
+        <div class="cert-name">Data Visualization</div>
+        <div class="cert-issuer">Great Learning Academy · 2024</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon"><i class="ti ti-award" style="color:#1565a8;font-size:20px"></i></div>
+      <div>
+        <div class="cert-name">AI Project Expo 2025</div>
+        <div class="cert-issuer">Lahore Leads University · 2025</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon"><i class="ti ti-certificate" style="color:#1565a8;font-size:20px"></i></div>
+      <div>
+        <div class="cert-name">English Language & Communication</div>
+        <div class="cert-issuer">UET Lahore · 2023</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="contact-section" id="contact">
+  <div class="contact-title">Let's Connect</div>
+  <div class="contact-sub">Open to AI/ML internships & junior roles · Lahore, Pakistan</div>
+  <div class="contact-links">
+    <a class="contact-btn" href="https://www.linkedin.com/in/ahmad-ali-117a8a264" target="_blank">LinkedIn</a>
+    <a class="contact-btn" href="https://github.com/ahmadali2622" target="_blank">GitHub</a>
+    <a class="contact-btn" href="mailto:ahmad.ali.career@gmail.com">Email</a>
+  </div>
+</div>
+
+<script>
+  function loadPhoto(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const img = document.getElementById('hero-photo-img');
+      const placeholder = document.getElementById('photo-placeholder');
+      img.src = e.target.result;
+      img.style.display = 'block';
+      placeholder.style.display = 'none';
+    };
+    reader.readAsDataURL(file);
+  }
+</script>
+
+</body>
+</html>
