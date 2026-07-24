@@ -9,6 +9,11 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
 
   :root {
     --navy:    #0a3d6b;
@@ -464,6 +469,236 @@
     .skills-grid { grid-template-columns: 1fr; }
     .btn-white, .btn-ghost { padding: 6px 10px; font-size: 10px; }
   }
+
+  /* ── NAV underline animation ── */
+  .nav-links a { position: relative; }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: -4px;
+    width: 0; height: 1.5px;
+    background: var(--sky);
+    transition: width .25s ease;
+  }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* ── HERO ambient floating shapes ── */
+  .hero-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(2px);
+    z-index: 1;
+    opacity: 0.35;
+    pointer-events: none;
+    animation: floatBlob 9s ease-in-out infinite;
+  }
+  .hero-blob.b1 {
+    width: 90px; height: 90px;
+    background: radial-gradient(circle, rgba(126,200,245,0.55), transparent 70%);
+    top: 12%; right: 30%;
+    animation-delay: 0s;
+  }
+  .hero-blob.b2 {
+    width: 130px; height: 130px;
+    background: radial-gradient(circle, rgba(255,255,255,0.25), transparent 70%);
+    bottom: 8%; right: 8%;
+    animation-delay: 2s;
+    animation-duration: 12s;
+  }
+  .hero-blob.b3 {
+    width: 60px; height: 60px;
+    background: radial-gradient(circle, rgba(126,200,245,0.4), transparent 70%);
+    top: 50%; left: 38%;
+    animation-delay: 4s;
+    animation-duration: 10s;
+  }
+  @keyframes floatBlob {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-14px, 18px) scale(1.12); }
+  }
+
+  /* ── WAVE DIVIDERS between sections ── */
+  .wave-divider { display: block; line-height: 0; }
+  .wave-divider svg { display: block; width: 100%; height: 44px; }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .reveal.active { opacity: 1; transform: translateY(0); }
+
+  /* stagger children inside grids that reveal together */
+  .proj-grid .reveal:nth-child(2) { transition-delay: .08s; }
+  .proj-grid .reveal:nth-child(3) { transition-delay: .16s; }
+  .skills-grid .reveal:nth-child(2) { transition-delay: .06s; }
+  .skills-grid .reveal:nth-child(3) { transition-delay: .12s; }
+  .skills-grid .reveal:nth-child(4) { transition-delay: .18s; }
+  .skills-grid .reveal:nth-child(5) { transition-delay: .24s; }
+  .skills-grid .reveal:nth-child(6) { transition-delay: .3s; }
+  .cert-grid .reveal:nth-child(2) { transition-delay: .08s; }
+  .cert-grid .reveal:nth-child(3) { transition-delay: .16s; }
+  .cert-grid .reveal:nth-child(4) { transition-delay: .24s; }
+  .cert-grid .reveal:nth-child(5) { transition-delay: .32s; }
+
+  /* stat count-up numbers just fade slightly on activation */
+  .stat-num { transition: color .3s ease; }
+
+  /* ── BIG NAME REVEAL ── */
+  .name-reveal {
+    padding: 70px 24px;
+    text-align: center;
+    background: var(--white);
+    overflow: hidden;
+  }
+  .name-reveal-eyebrow {
+    display: inline-block;
+    color: var(--blue);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    font-style: italic;
+  }
+  .name-reveal-text {
+    font-size: clamp(48px, 12vw, 130px);
+    font-weight: 700;
+    font-style: italic;
+    line-height: 0.95;
+    letter-spacing: 1px;
+    color: var(--navy);
+    -webkit-text-stroke: 1px var(--navy);
+  }
+  .name-reveal-text span {
+    display: inline-block;
+    background: linear-gradient(180deg, var(--navy), var(--blue));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .name-reveal-sub {
+    margin-top: 16px;
+    color: var(--muted);
+    font-size: 13px;
+    font-style: italic;
+  }
+
+  /* ── SOFT SKILLS ── */
+  .soft-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+  }
+  .soft-card {
+    background: var(--white);
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 18px;
+    text-align: center;
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .soft-card:hover { transform: translateY(-5px); box-shadow: 0 10px 24px rgba(21,101,168,0.12); }
+  .soft-icon {
+    width: 48px; height: 48px;
+    margin: 0 auto 14px;
+    border-radius: 50%;
+    background: var(--light);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .soft-icon i { font-size: 22px; color: var(--blue); }
+  .soft-title { font-size: 13.5px; font-weight: 700; color: var(--navy); font-style: italic; margin-bottom: 6px; }
+  .soft-desc { font-size: 11.5px; color: var(--muted); line-height: 1.6; }
+
+  /* ── PROCESS TIMELINE ── */
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    position: relative;
+  }
+  .process-card {
+    background: var(--white);
+    border: 0.5px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 18px;
+    position: relative;
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .process-card:hover { transform: translateY(-4px) rotate(-1deg); box-shadow: 0 10px 24px rgba(21,101,168,0.12); }
+  .process-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 30px; height: 30px;
+    background: linear-gradient(135deg, var(--navy), var(--blue));
+    color: var(--white);
+    font-size: 12px; font-weight: 700;
+    border-radius: 50%;
+    margin-bottom: 12px;
+  }
+  .process-title { font-size: 13.5px; font-weight: 700; color: var(--navy); font-style: italic; margin-bottom: 6px; }
+  .process-desc { font-size: 11.5px; color: var(--muted); line-height: 1.65; }
+
+  /* ── CONTACT FORM ── */
+  .contact-wrap {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 40px;
+    text-align: left;
+    max-width: 900px;
+    margin: 28px auto 0;
+  }
+  .contact-info-col .contact-title, .contact-info-col .contact-sub { text-align: left; }
+  .contact-info-col .contact-info { justify-content: flex-start; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+  .contact-info-col .contact-links { justify-content: flex-start; }
+  .contact-form {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 12px;
+    padding: 22px;
+  }
+  .contact-form input[type="text"],
+  .contact-form input[type="email"],
+  .contact-form textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 6px;
+    padding: 10px 12px;
+    color: var(--white);
+    font-family: Georgia, serif;
+    font-size: 12.5px;
+    margin-bottom: 12px;
+  }
+  .contact-form input::placeholder, .contact-form textarea::placeholder { color: rgba(255,255,255,0.45); }
+  .contact-form textarea { resize: vertical; min-height: 90px; }
+  .contact-form-row { display: flex; gap: 12px; }
+  .contact-form-row input { flex: 1; }
+  .contact-check {
+    display: flex; align-items: flex-start; gap: 8px;
+    font-size: 10.5px; color: rgba(255,255,255,0.6);
+    margin-bottom: 14px; line-height: 1.5;
+  }
+  .contact-check input { margin-top: 2px; }
+  .btn-submit {
+    background: var(--sky);
+    color: var(--navy);
+    border: none;
+    padding: 10px 26px;
+    border-radius: 6px;
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background .2s;
+  }
+  .btn-submit:hover { background: var(--white); }
+  .form-status { font-size: 11.5px; margin-top: 10px; color: var(--sky); font-style: italic; min-height: 14px; }
+
+  @media (max-width: 768px) {
+    .name-reveal { padding: 44px 16px; }
+    .contact-wrap { grid-template-columns: 1fr; gap: 24px; }
+  }
 </style>
 </head>
 <body>
@@ -476,6 +711,7 @@
     <a href="#projects">Projects</a>
     <a href="#skills">Skills</a>
     <a href="#certifications">Certifications</a>
+    <a href="#process">Process</a>
     <a href="#contact">Contact</a>
   </div>
 </nav>
@@ -484,6 +720,9 @@
 <section class="hero">
   <div class="hero-bg-img"></div>
   <div class="hero-overlay"></div>
+  <div class="hero-blob b1"></div>
+  <div class="hero-blob b2"></div>
+  <div class="hero-blob b3"></div>
 
   <div class="hero-content">
     <div class="hero-tag">Open to AI/ML Roles · Lahore, Pakistan</div>
@@ -503,17 +742,21 @@
 
 <!-- STATS BAR -->
 <div class="stats-bar">
-  <div class="stat"><div class="stat-num">3.82</div><div class="stat-label">CGPA</div></div>
-  <div class="stat"><div class="stat-num">3+</div><div class="stat-label">Internships</div></div>
-  <div class="stat"><div class="stat-num">3+</div><div class="stat-label">Projects</div></div>
-  <div class="stat"><div class="stat-num">85%+</div><div class="stat-label">Model Accuracy</div></div>
+  <div class="stat"><div class="stat-num" data-target="3.82" data-decimals="2">0</div><div class="stat-label">CGPA</div></div>
+  <div class="stat"><div class="stat-num" data-target="3" data-suffix="+">0</div><div class="stat-label">Internships</div></div>
+  <div class="stat"><div class="stat-num" data-target="3" data-suffix="+">0</div><div class="stat-label">Projects</div></div>
+  <div class="stat"><div class="stat-num" data-target="85" data-suffix="%+">0</div><div class="stat-label">Model Accuracy</div></div>
+</div>
+
+<div class="wave-divider">
+  <svg viewBox="0 0 1200 44" preserveAspectRatio="none"><path d="M0,22 C300,44 900,0 1200,22 L1200,44 L0,44 Z" fill="#1565a8"></path></svg>
 </div>
 
 <!-- EXPERIENCE -->
 <div class="section" id="experience">
-  <div class="section-title">Experience</div>
+  <div class="section-title reveal">Experience</div>
 
-  <div class="exp-card">
+  <div class="exp-card reveal">
     <div class="exp-header">
       <div>
         <div class="exp-role">NetSol Technologies | AI/ML Intern</div>
@@ -528,7 +771,7 @@
     </ul>
   </div>
 
-  <div class="exp-card">
+  <div class="exp-card reveal">
     <div class="exp-header">
       <div>
         <div class="exp-role">NetSol Technologies | AI/ML Trainee</div>
@@ -543,7 +786,7 @@
     </ul>
   </div>
 
-  <div class="exp-card">
+  <div class="exp-card reveal">
     <div class="exp-header">
       <div>
         <div class="exp-role">Digicon Valley | Data Science Intern</div>
@@ -558,12 +801,16 @@
   </div>
 </div>
 
+<div class="wave-divider">
+  <svg viewBox="0 0 1200 44" preserveAspectRatio="none"><path d="M0,22 C300,0 900,44 1200,22 L1200,0 L0,0 Z" fill="#ffffff"></path></svg>
+</div>
+
 <!-- PROJECTS -->
 <div class="section-alt" id="projects">
-  <div class="section-title">Projects</div>
+  <div class="section-title reveal">Projects</div>
   <div class="proj-grid">
 
-    <div class="proj-card">
+    <div class="proj-card reveal">
       <div class="proj-top">
         <div class="proj-icon"><i class="ti ti-heart-rate" style="color:#7ec8f5;font-size:18px"></i></div>
         <div class="proj-name">AI Health Analyzer</div>
@@ -576,7 +823,7 @@
       </div>
     </div>
 
-    <div class="proj-card">
+    <div class="proj-card reveal">
       <div class="proj-top">
         <div class="proj-icon"><i class="ti ti-message-chatbot" style="color:#7ec8f5;font-size:18px"></i></div>
         <div class="proj-name">RAG-Based Chatbot</div>
@@ -588,7 +835,7 @@
       </div>
     </div>
 
-    <div class="proj-card">
+    <div class="proj-card reveal">
       <div class="proj-top">
         <div class="proj-icon"><i class="ti ti-home" style="color:#7ec8f5;font-size:18px"></i></div>
         <div class="proj-name">House Price Prediction</div>
@@ -604,11 +851,15 @@
   </div>
 </div>
 
+<div class="wave-divider">
+  <svg viewBox="0 0 1200 44" preserveAspectRatio="none"><path d="M0,22 C300,44 900,0 1200,22 L1200,44 L0,44 Z" fill="#ffffff"></path></svg>
+</div>
+
 <!-- SKILLS -->
 <div class="section" id="skills">
-  <div class="section-title">Skills</div>
+  <div class="section-title reveal">Skills</div>
   <div class="skills-grid">
-    <div class="skill-box">
+    <div class="skill-box reveal">
       <div class="skill-label">Programming</div>
       <div class="skill-tags">
         <span class="tag">Python</span>
@@ -616,7 +867,7 @@
         <span class="tag">C++</span>
       </div>
     </div>
-    <div class="skill-box">
+    <div class="skill-box reveal">
       <div class="skill-label">AI / ML</div>
       <div class="skill-tags">
         <span class="tag">Supervised Learning</span>
@@ -626,7 +877,7 @@
         <span class="tag">Linear Regression</span>
       </div>
     </div>
-    <div class="skill-box">
+    <div class="skill-box reveal">
       <div class="skill-label">Libraries & Frameworks</div>
       <div class="skill-tags">
         <span class="tag">NumPy</span>
@@ -638,7 +889,7 @@
         <span class="tag">LangGraph</span>
       </div>
     </div>
-    <div class="skill-box">
+    <div class="skill-box reveal">
       <div class="skill-label">Tools & Platforms</div>
       <div class="skill-tags">
         <span class="tag">Git</span>
@@ -647,14 +898,14 @@
         <span class="tag">Google Colab</span>
       </div>
     </div>
-    <div class="skill-box">
+    <div class="skill-box reveal">
       <div class="skill-label">Databases</div>
       <div class="skill-tags">
         <span class="tag">ChromaDB</span>
         <span class="tag">MySQL</span>
       </div>
     </div>
-    <div class="skill-box">
+    <div class="skill-box reveal">
       <div class="skill-label">APIs & Models</div>
       <div class="skill-tags">
         <span class="tag">Gemini 2.5 Flash-Lite</span>
@@ -665,39 +916,43 @@
   </div>
 </div>
 
+<div class="wave-divider">
+  <svg viewBox="0 0 1200 44" preserveAspectRatio="none"><path d="M0,22 C300,0 900,44 1200,22 L1200,0 L0,0 Z" fill="#f0f5fb"></path></svg>
+</div>
+
 <!-- CERTIFICATIONS -->
 <div class="section-alt" id="certifications">
-  <div class="section-title">Certifications</div>
+  <div class="section-title reveal">Certifications</div>
   <div class="cert-grid">
-    <div class="cert-card">
+    <div class="cert-card reveal">
       <div class="cert-icon"><i class="ti ti-certificate" style="color:#1565a8;font-size:20px"></i></div>
       <div>
         <div class="cert-name">Python 3 – Basic to Advance</div>
         <div class="cert-issuer">Programming Hub · 2023</div>
       </div>
     </div>
-    <div class="cert-card">
+    <div class="cert-card reveal">
       <div class="cert-icon"><i class="ti ti-certificate" style="color:#1565a8;font-size:20px"></i></div>
       <div>
         <div class="cert-name">Data Science Intern Certificate</div>
         <div class="cert-issuer">Digicon Valley · 2024</div>
       </div>
     </div>
-    <div class="cert-card">
+    <div class="cert-card reveal">
       <div class="cert-icon"><i class="ti ti-certificate" style="color:#1565a8;font-size:20px"></i></div>
       <div>
         <div class="cert-name">Data Visualization</div>
         <div class="cert-issuer">Great Learning Academy · 2024</div>
       </div>
     </div>
-    <div class="cert-card">
+    <div class="cert-card reveal">
       <div class="cert-icon"><i class="ti ti-award" style="color:#1565a8;font-size:20px"></i></div>
       <div>
         <div class="cert-name">AI Project Expo 2025</div>
         <div class="cert-issuer">Lahore Leads University · 2025</div>
       </div>
     </div>
-    <div class="cert-card">
+    <div class="cert-card reveal">
       <div class="cert-icon"><i class="ti ti-certificate" style="color:#1565a8;font-size:20px"></i></div>
       <div>
         <div class="cert-name">English Language & Communication</div>
@@ -707,22 +962,174 @@
   </div>
 </div>
 
+<!-- BIG NAME REVEAL -->
+<div class="name-reveal">
+  <div class="name-reveal-eyebrow reveal">Full Stack & AI/ML Engineer</div>
+  <div class="name-reveal-text reveal"><span>AHMAD ALI</span></div>
+  <div class="name-reveal-sub reveal">Building fast, scalable, and intelligent applications.</div>
+</div>
+
+<!-- SOFT SKILLS -->
+<div class="section-alt" id="soft-skills">
+  <div class="section-title reveal">Professional Soft Skills</div>
+  <div class="soft-grid">
+    <div class="soft-card reveal">
+      <div class="soft-icon"><i class="ti ti-crown"></i></div>
+      <div class="soft-title">Leadership</div>
+      <div class="soft-desc">Guiding teams, managing tasks, and driving projects to completion with a shared vision.</div>
+    </div>
+    <div class="soft-card reveal">
+      <div class="soft-icon"><i class="ti ti-microphone-2"></i></div>
+      <div class="soft-title">Public Speaking</div>
+      <div class="soft-desc">Confident on stage — presenting ideas clearly and answering technical questions with ease.</div>
+    </div>
+    <div class="soft-card reveal">
+      <div class="soft-icon"><i class="ti ti-users-group"></i></div>
+      <div class="soft-title">Team Collaboration</div>
+      <div class="soft-desc">Working across roles, syncing engineering and design work, and keeping everyone aligned.</div>
+    </div>
+    <div class="soft-card reveal">
+      <div class="soft-icon"><i class="ti ti-message-circle"></i></div>
+      <div class="soft-title">Communication</div>
+      <div class="soft-desc">Clear, concise, and structured interactions in both business and technical contexts.</div>
+    </div>
+  </div>
+</div>
+
+<div class="wave-divider">
+  <svg viewBox="0 0 1200 44" preserveAspectRatio="none"><path d="M0,22 C300,0 900,44 1200,22 L1200,0 L0,0 Z" fill="#ffffff"></path></svg>
+</div>
+
+<!-- PROCESS TIMELINE -->
+<div class="section" id="process">
+  <div class="section-title reveal">How I Work</div>
+  <div class="process-grid">
+    <div class="process-card reveal">
+      <div class="process-num">01</div>
+      <div class="process-title">Research</div>
+      <div class="process-desc">Understanding goals, requirements, and constraints to lay a solid foundation for the project.</div>
+    </div>
+    <div class="process-card reveal">
+      <div class="process-num">02</div>
+      <div class="process-title">Design</div>
+      <div class="process-desc">Planning clean architecture and intuitive interfaces before writing a single line of code.</div>
+    </div>
+    <div class="process-card reveal">
+      <div class="process-num">03</div>
+      <div class="process-title">Develop</div>
+      <div class="process-desc">Building scalable backends and responsive frontends using modern tools and best practices.</div>
+    </div>
+    <div class="process-card reveal">
+      <div class="process-num">04</div>
+      <div class="process-title">Deploy</div>
+      <div class="process-desc">Testing, refining, and shipping — then iterating based on real feedback.</div>
+    </div>
+  </div>
+</div>
+
+<div class="wave-divider">
+  <svg viewBox="0 0 1200 44" preserveAspectRatio="none"><path d="M0,22 C300,44 900,0 1200,22 L1200,44 L0,44 Z" fill="#ffffff"></path></svg>
+</div>
+
 <!-- CONTACT -->
-<div class="contact-section" id="contact">
+<div class="contact-section reveal" id="contact">
   <div class="contact-title">Let's Connect</div>
   <div class="contact-sub">Open to AI/ML internships & junior roles · Lahore, Pakistan</div>
-  <div class="contact-info">
-    <span>📧 ahmad.ali.career@gmail.com</span>
-    <span>📞 +92 302 0436865</span>
-  </div>
-  <div class="contact-links">
-    <a class="contact-btn" href="https://www.linkedin.com/in/ahmad-ali-117a8a264" target="_blank">LinkedIn</a>
-    <a class="contact-btn" href="https://github.com/ahmadali2622" target="_blank">GitHub</a>
-    <a class="contact-btn" href="mailto:ahmad.ali.career@gmail.com">Email</a>
+
+  <div class="contact-wrap">
+    <div class="contact-info-col">
+      <div class="contact-info">
+        <span>📧 ahmad.ali.career@gmail.com</span>
+        <span>📞 +92 302 0436865</span>
+      </div>
+      <div class="contact-links">
+        <a class="contact-btn" href="https://www.linkedin.com/in/ahmad-ali-117a8a264" target="_blank">LinkedIn</a>
+        <a class="contact-btn" href="https://github.com/ahmadali2622" target="_blank">GitHub</a>
+        <a class="contact-btn" href="mailto:ahmad.ali.career@gmail.com">Email</a>
+      </div>
+    </div>
+
+    <form class="contact-form" id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <div class="contact-form-row">
+        <input type="text" name="first_name" placeholder="First Name" required>
+        <input type="text" name="last_name" placeholder="Last Name" required>
+      </div>
+      <input type="email" name="email" placeholder="Email" required>
+      <textarea name="message" placeholder="Type your message here" required></textarea>
+      <label class="contact-check">
+        <input type="checkbox" required>
+        <span>I give permission to contact me at this email address. I typically respond within 24–48 hours.</span>
+      </label>
+      <button type="submit" class="btn-submit">Send Message →</button>
+      <div class="form-status" id="form-status"></div>
+    </form>
   </div>
 </div>
 
 
 
+<script>
+  // ── Scroll reveal ──
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  // ── Stat count-up ──
+  const statNums = document.querySelectorAll('.stat-num[data-target]');
+  const statObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = parseFloat(el.dataset.target);
+      const decimals = parseInt(el.dataset.decimals || '0');
+      const suffix = el.dataset.suffix || '';
+      const duration = 1200;
+      const start = performance.now();
+      function tick(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const value = target * eased;
+        el.textContent = value.toFixed(decimals) + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      statObserver.unobserve(el);
+    });
+  }, { threshold: 0.4 });
+  statNums.forEach(el => statObserver.observe(el));
+
+  // ── Contact form (Formspree) ──
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('form-status');
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      status.style.color = 'var(--sky)';
+      status.textContent = 'Sending...';
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          status.textContent = 'Message sent — thank you! I\'ll get back to you soon.';
+          form.reset();
+        } else {
+          status.textContent = 'Something went wrong. Please try the email link instead.';
+        }
+      } catch (err) {
+        status.textContent = 'Network error. Please try the email link instead.';
+      }
+    });
+  }
+</script>
 </body>
 </html>
